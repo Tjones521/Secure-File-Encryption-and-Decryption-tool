@@ -1,2 +1,15 @@
-# Secure-File-Encryption-and-Decryption-tool
-A simple, secure command-line tool to encrypt and decrypt files using AES-256 authenticated encryption. This project demonstrates secure key handling, integrity verification, and reproducible testing.
+# Secure File Encryption & Decryption Tool
+
+A Python project that securely encrypts and decrypts files using symmetric encryption (Fernet).
+
+## Features
+- Generate a secure encryption key
+- Encrypt any file
+- Decrypt previously encrypted files
+- Easy CLI interface
+
+## Installation
+```bash
+python3 -m venv venv
+source venv/bin/activate
+pip install -r requirements.txt
