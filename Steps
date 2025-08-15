@@ -1,0 +1,118 @@
+#Set up the project folder
+
+mkdir secure-file-tool
+cd secure-file-tool
+
+#Create these files/folders:
+secure-file-tool/
+├─ README.md
+├─ LICENSE
+├─ requirements.txt
+├─ .gitignore
+├─ securefile/
+│  ├─ __init__.py
+│  └─ core.py
+
+
+#Create a .gitignore
+# .gitignore
+__pycache__/
+*.py[cod]
+.venv/
+*.log
+.DS_Store
+
+
+#Install dependencies
+python3 -m venv venv
+source venv/bin/activate       # Windows PowerShell: .\venv\Scripts\Activate.ps1
+pip install cryptography
+pip freeze > requirements.txt
+
+
+#Write the encryption/decryption logic(securefile/core.py)
+from cryptography.fernet import Fernet
+import os
+
+# Generate a key (run once and save securely)
+def generate_key(path="secret.key"):
+    key = Fernet.generate_key()
+    with open(path, "wb") as f:
+        f.write(key)
+    print(f"Key saved to {path}")
+
+# Load the key from file
+def load_key(path="secret.key"):
+    return open(path, "rb").read()
+
+# Encrypt a file
+def encrypt_file(file_path, key_path="secret.key"):
+    key = load_key(key_path)
+    fernet = Fernet(key)
+    with open(file_path, "rb") as f:
+        data = f.read()
+    encrypted = fernet.encrypt(data)
+    with open(file_path + ".enc", "wb") as f:
+        f.write(encrypted)
+    print(f"Encrypted file saved as {file_path}.enc")
+
+# Decrypt a file
+def decrypt_file(file_path, key_path="secret.key"):
+    key = load_key(key_path)
+    fernet = Fernet(key)
+    with open(file_path, "rb") as f:
+        data = f.read()
+    decrypted = fernet.decrypt(data)
+    output_file = file_path.replace(".enc", ".dec")
+    with open(output_file, "wb") as f:
+        f.write(decrypted)
+    print(f"Decrypted file saved as {output_file}")
+
+#Create a CLI(securefile/__main__.py)
+from securefile.core import generate_key, encrypt_file, decrypt_file
+import argparse
+
+parser = argparse.ArgumentParser(description="Secure File Encryption/Decryption Tool")
+subparsers = parser.add_subparsers(dest="command")
+
+# generate key
+subparsers.add_parser("genkey", help="Generate a secret key")
+
+# encrypt
+encrypt_parser = subparsers.add_parser("encrypt", help="Encrypt a file")
+encrypt_parser.add_argument("file", help="Path to the file to encrypt")
+encrypt_parser.add_argument("--key", help="Path to key file", default="secret.key")
+
+# decrypt
+decrypt_parser = subparsers.add_parser("decrypt", help="Decrypt a file")
+decrypt_parser.add_argument("file", help="Path to the encrypted file")
+decrypt_parser.add_argument("--key", help="Path to key file", default="secret.key")
+
+args = parser.parse_args()
+
+if args.command == "genkey":
+    generate_key()
+elif args.command == "encrypt":
+    encrypt_file(args.file, args.key)
+elif args.command == "decrypt":
+    decrypt_file(args.file, args.key)
+else:
+    parser.print_help()
+
+#Test the tool
+-Generate a key
+python -m securefile.genkey
+
+-Encrypt a file
+python -m securefile.encrypt test.txt
+
+-Decrypt a file
+python -m securefile.decrypt test.txt.enc
+
+
+SUMMARY <br/>
+![Summary of project](https://imgur.com/a/6kUu7M4.png)
+
+
+
+
