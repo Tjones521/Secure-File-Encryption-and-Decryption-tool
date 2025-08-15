@@ -11,9 +11,8 @@ A Python project that securely encrypts and decrypts files using symmetric encry
 
 <h2>Environments Used </h2>
 
-- <b>Windows 10</b> (21H2)
-- <b>MacOS</b> (21H2)
-
+- <b>Windows 10</b>
+- <b>MacOS</b> 
 ## Features
 - Generate a secure encryption key
 - Encrypt any file
