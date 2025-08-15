@@ -5,6 +5,7 @@ A Python project that securely encrypts and decrypts files using symmetric encry
 <h2>Languages and Utilities Used</h2>
  
 - <b>Windows Server</b>
+- <b>Command Prompt(CMD)</b>
 - <b>PowerShell</b> 
 
 
