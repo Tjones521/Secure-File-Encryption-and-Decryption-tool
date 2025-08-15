@@ -24,3 +24,12 @@ A Python project that securely encrypts and decrypts files using symmetric encry
 python3 -m venv venv
 source venv/bin/activate
 pip install -r requirements.txt
+
+```
+
+
+## Results:
+<img src="https://i.imgur.com/jDEn3gC.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+<br />
+
+
