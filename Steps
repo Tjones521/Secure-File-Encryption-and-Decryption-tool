@@ -111,7 +111,8 @@ python -m securefile.decrypt test.txt.enc
 
 
 SUMMARY <br/>
-![Project Screenshot](https://i.imgur.com/jDEn3gC.png)
+<img src="https://i.imgur.com/jDEn3gC.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+<br />
 
 
 
