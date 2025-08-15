@@ -1,0 +1,11 @@
+mkdir secure-file-tool
+cd secure-file-tool
+
+secure-file-tool/
+├─ README.md
+├─ LICENSE
+├─ requirements.txt
+├─ .gitignore
+├─ securefile/
+│  ├─ __init__.py
+│  └─ core.py
