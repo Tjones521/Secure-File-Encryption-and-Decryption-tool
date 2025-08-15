@@ -2,6 +2,17 @@
 
 A Python project that securely encrypts and decrypts files using symmetric encryption (Fernet).
 
+<h2>Languages and Utilities Used</h2>
+ 
+- <b>Windows Server</b>
+- <b>PowerShell</b> 
+
+
+<h2>Environments Used </h2>
+
+- <b>Windows 10</b> (21H2)
+- <b>MacOS</b> (21H2)
+
 ## Features
 - Generate a secure encryption key
 - Encrypt any file
